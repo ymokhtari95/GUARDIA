@@ -1,16 +1,112 @@
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        header p {
+            color: #777;
+        }
+        section {
+            margin-top: 20px;
+        }
+        h2 {
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 5px;
+            color: #007BFF;
+        }
+        .experience, .formation {
+            margin-bottom: 15px;
+        }
+        .experience h3, .formation h3 {
+            margin: 0;
+            font-size: 1.1em;
+        }
+        .date {
+            font-size: 0.9em;
+            color: #555;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Jean Dupont</h1>
+            <p>Développeur Web | jean.dupont@email.com | 06 12 34 56 78</p>
+        </header>
 
-<h1>Voici la premiere version de mon site </h1>
-<p>La deuxieme version arrive .........</p>
+        <section>
+            <h2>Profil</h2>
+            <p>Développeur web passionné avec 5 ans d'expérience dans la création de sites modernes et responsives.</p>
+        </section>
 
-<h2> Voici la deuxieme version </h2>
+        <section>
+            <h2>Expérience professionnelle</h2>
+            <div class="experience">
+                <h3>Développeur Front-End - Entreprise X</h3>
+                <p class="date">2021 - Présent</p>
+                <ul>
+                    <li>Création d'interfaces utilisateur responsives</li>
+                    <li>Optimisation des performances</li>
+                </ul>
+            </div>
+            <div class="experience">
+                <h3>Intégrateur Web - Agence Y</h3>
+                <p class="date">2018 - 2021</p>
+                <ul>
+                    <li>Intégration HTML/CSS/JS</li>
+                    <li>Collaboration avec l’équipe design</li>
+                </ul>
+            </div>
+        </section>
 
-<h1 style="background-color:DodgerBlue;">C'est ma 3 eme version</h1>
+        <section>
+            <h2>Formation</h2>
+            <div class="formation">
+                <h3>Licence Informatique - Université Z</h3>
+                <p class="date">2015 - 2018</p>
+            </div>
+        </section>
 
-<h1> c'est vraiment la fin la .... <h1>
-
-<h1> Hello <h1>
-
-<body>
+        <section>
+            <h2>Compétences</h2>
+            <ul>
+                <li>HTML5 / CSS3 / JavaScript</li>
+                <li>React, Vue.js</li>
+                <li>Git / GitHub</li>
+            </ul>
+        </section>
+    </div>
+</body>
 </html>
+
