@@ -1,106 +1,352 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" prefix="og: https://ogp.me/ns#" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon CV</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-        header p {
-            color: #777;
-        }
-        section {
-            margin-top: 20px;
-        }
-        h2 {
-            border-bottom: 2px solid #007BFF;
-            padding-bottom: 5px;
-            color: #007BFF;
-        }
-        .experience, .formation {
-            margin-bottom: 15px;
-        }
-        .experience h3, .formation h3 {
-            margin: 0;
-            font-size: 1.1em;
-        }
-        .date {
-            font-size: 0.9em;
-            color: #555;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        @media (max-width: 600px) {
-            body {
-                font-size: 14px;
-            }
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nom Prénom — CV</title>
+<meta name="description" content="CV moderne, lisible et imprimable — Nom Prénom" />
+<meta property="og:title" content="Nom Prénom — CV" />
+<meta property="og:description" content="CV moderne, lisible et imprimable — Nom Prénom" />
+<meta name="color-scheme" content="light dark" />
+<style>
+/*
+————————————————————————————————————————
+CV HTML premium — 1 seul fichier, responsive & prêt à imprimer
+Points clés :
+• Grille 2 colonnes (sidebar + contenu)
+• Design soigné, accessible, dark-mode, et styles d’impression A4
+• Composants réutilisables (section, tag, timeline)
+*/
+
+:root {
+--bg: #f7f7fb;
+--paper: #ffffff;
+--ink: #1f2937; /* gris-ardoise */
+--muted: #6b7280; /* gris */
+--accent: #2563eb; /* bleu */
+--accent-ink: #0b3ea3; /* bleu foncé */
+--chip: #e8efff; /* bleu pâle */
+--line: #e5e7eb; /* séparateurs */
+}
+
+@media (prefers-color-scheme: dark) {
+:root {
+--bg: #0b0e14;
+--paper: #0f141c;
+--ink: #e5e7eb;
+--muted: #a6adbb;
+--accent: #60a5fa;
+--accent-ink: #bfdbfe;
+--chip: #11223b;
+--line: #1f2937;
+}
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+margin: 0;
+font: 15px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+color: var(--ink);
+background: radial-gradient(1200px 600px at 70% -10%, rgba(37,99,235,0.08), transparent 50%), var(--bg);
+}
+
+.page {
+max-width: 1024px;
+margin: 32px auto;
+padding: 24px;
+}
+
+.sheet {
+background: var(--paper);
+border-radius: 18px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 1px 0 rgba(0,0,0,0.06) inset;
+overflow: clip;
+display: grid;
+grid-template-columns: 300px 1fr;
+min-height: 1000px;
+}
+
+/* Header */
+header {
+grid-column: 1 / -1;
+display: grid;
+grid-template-columns: 300px 1fr;
+gap: 0;
+align-items: stretch;
+border-bottom: 1px solid var(--line);
+}
+.id {
+padding: 28px 24px;
+background: linear-gradient(180deg, rgba(37,99,235,0.08), transparent 55%);
+display: flex; flex-direction: column; gap: 12px;
+}
+.avatar {
+width: 96px; height: 96px; border-radius: 12px;
+object-fit: cover; border: 2px solid rgba(37,99,235,0.25);
+}
+.name { font-size: 28px; font-weight: 800; letter-spacing: -0.3px; }
+.role { color: var(--muted); font-weight: 600; }
+.links { display:flex; flex-wrap: wrap; gap:8px; margin-top:6px; }
+.link {
+display:inline-flex; align-items:center; gap:8px; padding:6px 10px;
+background: var(--chip); color: var(--accent-ink); border-radius: 999px;
+text-decoration: none; font-weight: 600; font-size: 13px;
+border: 1px solid rgba(37,99,235,0.15);
+}
+
+.intro { padding: 28px 28px 28px 24px; display:flex; align-items:center; }
+.summary { font-size: 16px; max-width: 70ch; }
+
+/* Main grid */
+.grid {
+display: grid;
+grid-template-columns: 300px 1fr;
+width: 100%;
+}
+aside { border-right: 1px solid var(--line); padding: 20px 18px; }
+main { padding: 20px 24px; }
+
+h2 {
+font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+color: var(--muted); font-weight: 800; margin: 18px 0 10px;
+}
+
+.section { margin-bottom: 18px; }
+.card {
+border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px;
+background: linear-gradient(180deg, rgba(17,24,39,0.02), transparent 35%);
+}
+.title { font-weight: 700; }
+.meta { color: var(--muted); font-size: 13px; }
+.bullets { margin: 8px 0 0 0; padding-left: 18px; }
+.bullets li { margin: 6px 0; }
+
+.chips { display:flex; flex-wrap: wrap; gap:8px; margin-top: 8px; }
+.chip {
+border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700;
+background: var(--chip); color: var(--accent-ink); border: 1px solid rgba(37,99,235,0.2);
+}
+
+/* Timeline */
+.timeline { position: relative; }
+.timeline::before { content:""; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--line); }
+.tl-item { position: relative; padding-left: 32px; margin-left: 0; }
+.tl-item::before { content:""; position: absolute; left: 3px; top: 10px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); }
+
+/* Footer actions */
+.toolbar { display:flex; gap: 10px; justify-content: flex-end; padding: 12px 16px; border-top: 1px solid var(--line); }
+.btn { cursor: pointer; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--paper); font-weight: 700; }
+.btn.primary { background: var(--accent); color: white; border-color: transparent; }
+
+/* Layout responsive */
+@media (max-width: 900px) {
+.sheet, header, .grid { grid-template-columns: 1fr; }
+aside { border-right: none; border-top: 1px solid var(--line); }
+.intro { padding: 16px; }
+.id { align-items: flex-start; }
+}
+
+/* Impression (A4) */
+@page { size: A4; margin: 10mm; }
+@media print {
+body { background: none; }
+.page { margin: 0; padding: 0; }
+.toolbar { display: none; }
+.sheet { box-shadow: none; border-radius: 0; }
+.id { background: none; }
+a { color: inherit; text-decoration: none; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>MOKHTARI Yassine</h1>
-            <p>Etudiant | ymokhtari@gmail.com | 06 12 34 56 78</p>
-        </header>
+<div class="page">
+<article class="sheet" role="document" aria-label="CV de Nom Prénom">
+<!-- HEADER -->
+<header>
+<div class="id">
+<img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop" alt="Portrait de Nom Prénom" />
+<div>
+<div class="name">Nom Prénom</div>
+<div class="role">Intitulé du poste / Spécialité</div>
+</div>
+<div class="links">
+<a class="link" href="mailto:prenom.nom@email.com" aria-label="Email">✉️ prenom.nom@email.com</a>
+<a class="link" href="tel:+33102030405" aria-label="Téléphone">☎️ +33 1 02 03 04 05</a>
+<a class="link" href="https://www.linkedin.com/in/votre-profil" target="_blank" rel="noopener">in/LinkedIn</a>
+<a class="link" href="https://github.com/votre-handle" target="_blank" rel="noopener">GitHub</a>
+<a class="link" href="https://votre-portfolio.com" target="_blank" rel="noopener">Portfolio</a>
+</div>
+</div>
+<div class="intro">
+<p class="summary">
+Court pitch (3–4 lignes) orienté impact : spécialités, technologies clés, et résultats mesurables.
+Ex. « Ingénieur logiciel full‑stack (3 ans) — React/Node/TypeScript. J’ai livré 4 produits en prod,
+réduit le temps de build de 35 % et piloté une refonte design‑system multi‑marque. »
+</p>
+</div>
+</header>
 
-        <section>
-            <h2>Profil</h2>
-            <p>Etudiant motivé en cybersécurité à l'école Guardia cs</p>
-        </section>
+<div class="grid" role="presentation">
+<!-- SIDEBAR -->
+<aside aria-label="Résumé des compétences et infos">
+<section class="section" aria-labelledby="skills">
+<h2 id="skills">Compétences</h2>
+<div class="card">
+<div class="chips">
+<span class="chip">JavaScript</span>
+<span class="chip">TypeScript</span>
+<span class="chip">React</span>
+<span class="chip">Node.js</span>
+<span class="chip">Python</span>
+<span class="chip">SQL</span>
+<span class="chip">Docker</span>
+</div>
+</div>
+</section>
 
-        <section>
-            <h2>Expérience professionnelle</h2>
-            <div class="experience">
-                <h3>Agent de sécurité</h3>
-                <p class="date">2021 - Présent</p>
-                <ul>
-                    <li>Surveillances Grands Evenements</li>
-                </ul>
-            </div>
-            <div class="experience">
-                <h3>Amazon</h3>
-                <p class="date">2024 - 2025</p>
-            </div>
-        </section>
+<section class="section" aria-labelledby="tooling">
+<h2 id="tooling">Outils</h2>
+<div class="card">
+<p class="meta">Git, GitHub Actions, Jest, Playwright, Figma, Storybook, Linux</p>
+</div>
+</section>
 
-        <section>
-            <h2>Formation</h2>
-            <div class="formation">
-                <h3>Double licence Maths-Physique</h3>
-                <p class="date">2023 - 2025</p>
-            </div>
-        </section>
+<section class="section" aria-labelledby="langues">
+<h2 id="langues">Langues</h2>
+<div class="card">
+<p class="meta"><strong>Français</strong> : natif · <strong>Anglais</strong> : C1 · <strong>Arabe</strong> : B2</p>
+</div>
+</section>
 
-        <section>
-            <h2>Compétences</h2>
-            <ul>
-                <li>Python / HTML5 / C</li>
-                <li>Git / GitHub</li>
-            </ul>
-        </section>
-    </div>
+<section class="section" aria-labelledby="edu">
+<h2 id="edu">Formation</h2>
+<div class="card">
+<div class="title">Diplôme — Établissement</div>
+<div class="meta">Ville — 2021–2024</div>
+<ul class="bullets">
+<li>Majeure / Mention</li>
+<li>Modules clés : A, B, C</li>
+</ul>
+</div>
+</section>
+
+<section class="section" aria-labelledby="prix">
+<h2 id="prix">Prix & Certifs</h2>
+<div class="card">
+<ul class="bullets">
+<li>Certif X (2024)</li>
+<li>Lauréat Concours Y (Top 10 %)</li>
+</ul>
+</div>
+</section>
+
+<section class="section" aria-labelledby="interets">
+<h2 id="interets">Centres d’intérêt</h2>
+<div class="card">
+<p class="meta">Course, photographie, échecs, bénévolat</p>
+</div>
+</section>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main aria-label="Expériences et projets">
+<section class="section" aria-labelledby="exp">
+<h2 id="exp">Expériences</h2>
+<div class="timeline">
+<div class="card tl-item">
+<div class="title">Intitulé du poste — Société</div>
+<div class="meta">Ville · 2023 — Aujourd’hui</div>
+<ul class="bullets">
+<li>Impact chiffré n°1 (ex : +28 % de conversion en 4 mois).</li>
+<li>Impact n°2 (ex : -35 % de coût infra via optimisation Docker/K8s).</li>
+<li>Responsabilités clés : pilotage, mentoring, roadmap.</li>
+</ul>
+<div class="chips">
+<span class="chip">React</span><span class="chip">Node</span><span class="chip">PostgreSQL</span>
+</div>
+</div>
+
+<div class="card tl-item">
+<div class="title">Intitulé du poste — Société</div>
+<div class="meta">Ville · 2021 — 2023</div>
+<ul class="bullets">
+<li>Livraison de X fonctionnalités majeures (NPS +12).</li>
+<li>Automatisation CI : -50 % sur les temps de test.</li>
+<li>Collaboration produit/design, accessibilité AA.</li>
+</ul>
+<div class="chips">
+<span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">Storybook</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="proj">
+<h2 id="proj">Projets</h2>
+<div class="card">
+<div class="title">Projet phare — rôle & résultats</div>
+<div class="meta">Lien : <a href="#" target="_blank" rel="noopener">démonstration</a></div>
+<ul class="bullets">
+<li>Problème résolu et métriques (ex : 10k MAU en 6 mois).</li>
+<li>Stack : X, Y, Z. Contributions principales.</li>
+<li>Tests, monitoring, sécurité, performance.</li>
+</ul>
+</div>
+<div class="card">
+<div class="title">Projet 2 — side project / open‑source</div>
+<div class="meta">#open‑source</div>
+<ul class="bullets">
+<li>Lib publiée (1k ⭐) — rôle, portée.</li>
+</ul>
+</div>
+</section>
+
+<section class="section" aria-labelledby="ref">
+<h2 id="ref">Références</h2>
+<div class="card">
+<p class="meta">Disponible sur demande · <a href="mailto:prenom.nom@email.com">me contacter</a></p>
+</div>
+</section>
+</main>
+</div>
+
+<!-- FOOTER ACTIONS (non imprimées) -->
+<div class="toolbar" role="group" aria-label="Actions">
+<button class="btn primary" onclick="window.print()">📄 Exporter en PDF</button>
+<button class="btn" onclick="toggleDensity()">🔧 Densité</button>
+</div>
+</article>
+</div>
+
+<!-- Données structurées (Person) -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Person",
+"name": "Nom Prénom",
+"jobTitle": "Intitulé du poste",
+"email": "mailto:prenom.nom@email.com",
+"telephone": "+33102030405",
+"url": "https://votre-portfolio.com",
+"sameAs": [
+"https://www.linkedin.com/in/votre-profil",
+"https://github.com/votre-handle"
+]
+}
+</script>
+
+<script>
+function toggleDensity(){
+const root = document.documentElement;
+const body = document.body;
+body.classList.toggle('dense');
+if(body.classList.contains('dense')){
+root.style.setProperty('--line', 'transparent');
+} else {
+root.style.removeProperty('--line');
+}
+}
+</script>
 </body>
 </html>
-
